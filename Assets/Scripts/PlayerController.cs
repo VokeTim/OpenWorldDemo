@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
             .With("Right", "<Keyboard>/d");
         attackAction.AddBinding("<Mouse>/leftButton");
         attackAction.performed += OnAttackCallbackContext;
-        Debug.Log("InputSystemCompireOver!");
     }
 
     private void Update()
