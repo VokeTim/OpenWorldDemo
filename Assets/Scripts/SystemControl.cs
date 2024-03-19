@@ -1,19 +1,22 @@
 using UnityEngine.InputSystem;
 
-public class SystemControl
+namespace OpenWorld
 {
-    private BaseInputAction actions;
-
-    public void InitMoveAction(ref InputAction moveAction) 
+    public class SystemControl
     {
-        actions = new MoveInputActionDev();
-        actions.IinitAction().Init(ref moveAction);
-    }
+        private BaseInputAction actions;
 
-    public void InitAttackAction(ref InputAction attackAction) 
-    {
-        actions = new AttackInputActionDev();
-        actions.IinitAction().Init(ref attackAction);
-    }
+        public void InitMoveAction(ref InputAction moveAction)
+        {
+            actions = new MoveInputActionDev();
+            actions.IinitAction().Init(ref moveAction);
+        }
 
+        public void InitAttackAction(ref InputAction attackAction)
+        {
+            actions = new AttackInputActionDev();
+            actions.IinitAction().Init(ref attackAction);
+        }
+
+    }
 }

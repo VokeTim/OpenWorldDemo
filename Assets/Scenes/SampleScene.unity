@@ -585,16 +585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
-  actions: {fileID: -944628639613478452, guid: c2cccf7addbd6aa458c9fba8d49ce9dc, type: 3}
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 456373e3-437f-45a2-b813-a732ed4f032e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!4 &1818872402
 Transform:
   m_ObjectHideFlags: 0
