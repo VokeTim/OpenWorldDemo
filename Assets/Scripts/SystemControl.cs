@@ -8,13 +8,13 @@ namespace OpenWorld
 
         public void InitMoveAction(ref InputAction moveAction)
         {
-            actions = new MoveInputActionDev();
+            actions = new MoveInputAction();
             actions.IinitAction().Init(ref moveAction);
         }
 
         public void InitAttackAction(ref InputAction attackAction)
         {
-            actions = new AttackInputActionDev();
+            actions = new AttackInputAction();
             actions.IinitAction().Init(ref attackAction);
         }
 

@@ -1,10 +1,10 @@
 namespace OpenWorld
 {
-    public class MoveInputActionDev : BaseInputAction
+    public class AttackInputAction : BaseInputAction
     {
         public override IInitAction IinitAction()
         {
-            return new MoveInputActionImpl();
+            return new AttackInputActionImpl();
         }
     }
 }
