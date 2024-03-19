@@ -2,7 +2,7 @@ using UnityEngine.InputSystem;
 
 namespace OpenWorld
 {
-    public class MoveInputActionImpl : IInitAction
+    public class MoveInputActionImpl : IActionInput
     {
         public void Init(ref InputAction action)
         {

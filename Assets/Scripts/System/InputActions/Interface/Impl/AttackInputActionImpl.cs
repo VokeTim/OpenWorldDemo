@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace OpenWorld
 {
-    public class AttackInputActionImpl : IInitAction
+    public class AttackInputActionImpl : IActionInput
     {
         public void Init(ref InputAction action)
         {

@@ -2,7 +2,7 @@ namespace OpenWorld
 {
     public class MoveInputAction : BaseInputAction
     {
-        public override IInitAction IinitAction()
+        public override IActionInput IinitAction()
         {
             return new MoveInputActionImpl();
         }
