@@ -1,27 +1,19 @@
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SystemControl
 {
+    private BaseInputAction actions;
+
     public void InitMoveAction(ref InputAction moveAction) 
     {
-        moveAction = new InputAction();
-        moveAction.AddCompositeBinding("2DVector")
-        .With("Up", "<Keyboard>/w")
-        .With("Down", "<Keyboard>/s")
-        .With("Left", "<Keyboard>/a")
-        .With("Right", "<Keyboard>/d");
+        actions = new MoveInputActionDev();
+        actions.IinitAction().Init(ref moveAction);
     }
 
     public void InitAttackAction(ref InputAction attackAction) 
     {
-        attackAction = new InputAction();
-        attackAction.AddBinding("<Mouse>/leftButton");
-        attackAction.performed += OnAttack;
+        actions = new AttackInputActionDev();
+        actions.IinitAction().Init(ref attackAction);
     }
 
-    private void OnAttack(InputAction.CallbackContext context)
-    {
-        Debug.Log("attack!");
-    }
 }
