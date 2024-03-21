@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -16,7 +14,7 @@ namespace OpenWorld.DOTS.PlayerControl
 
         public void Move(float deltaTime) 
         {
-            InputAction moveAction = GameManager.Instance.getMoveAction();
+            InputAction moveAction = GameManager.Instance.GetMoveAction();
             Vector2 moveDir = moveAction.ReadValue<Vector2>();
             transform.ValueRW.Position += new float3(moveDir.x, 0, moveDir.y) * playerData.ValueRO.moveSpeed * deltaTime;
         }

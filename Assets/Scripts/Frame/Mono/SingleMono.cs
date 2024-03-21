@@ -4,7 +4,7 @@ public class SingleMono<T> : MonoBehaviour where T : SingleMono<T>
 {
     public static T Instance;
 
-    protected virtual void Init()
+    protected void Awake()
     {
         if (Instance == null) 
         {

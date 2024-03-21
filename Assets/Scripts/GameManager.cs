@@ -5,29 +5,28 @@ namespace OpenWorld
     public class GameManager : SingleMono<GameManager>
     {
         private InputAction moveAction;
+        private InputAction attackAction;
 
-        public InputAction getMoveAction() { return moveAction; }
-
-        protected override void Init()
-        {
-            base.Init();
-            SystemControl systemControl = new SystemControl();
-            systemControl.InitMoveAction(ref moveAction);
-        }
+        public InputAction GetMoveAction() { return moveAction; }
 
         private void Awake()
         {
-            Init();
+            base.Awake();
+            SystemControl systemControl = new SystemControl();
+            systemControl.InitMoveAction(ref moveAction);
+            systemControl.InitAttackAction(ref attackAction);
         }
 
         private void OnEnable()
         {
             moveAction.Enable();
+            attackAction.Enable();
         }
 
         private void OnDisable()
         {
             moveAction.Disable();
+            attackAction.Disable();
         }
     }
 }
