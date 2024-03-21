@@ -10,14 +10,15 @@ namespace OpenWorld.DOTS.PlayerControl
 {
     public readonly partial struct MovingAspect : IAspect
     {
-        private readonly RefRO<PlayerData> moveSpeed;
+        private readonly RefRO<PlayerData> playerData;
 
         private readonly RefRW<LocalTransform> transform;
 
         public void Move(float deltaTime) 
         {
             InputAction moveAction = GameManager.Instance.getMoveAction();
-            transform.ValueRW.Position += new float3(moveAction.ReadValue<Vector2>().x, 0, moveAction.ReadValue<Vector2>().y) * moveSpeed.ValueRO.moveSpeed * deltaTime;
+            Vector2 moveDir = moveAction.ReadValue<Vector2>();
+            transform.ValueRW.Position += new float3(moveDir.x, 0, moveDir.y) * playerData.ValueRO.moveSpeed * deltaTime;
         }
     }
 }
