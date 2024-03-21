@@ -1,4 +1,4 @@
-namespace OpenWorld
+namespace OpenWorld.System.InputSystem
 {
     public class AttackInputAction : BaseInputAction
     {

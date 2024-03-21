@@ -1,6 +1,6 @@
 using UnityEngine.InputSystem;
 
-namespace OpenWorld
+namespace OpenWorld.System.InputSystem
 {
     public interface IActionInput
     {

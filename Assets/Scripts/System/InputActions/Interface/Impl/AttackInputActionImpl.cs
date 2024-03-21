@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace OpenWorld
+namespace OpenWorld.System.InputSystem
 {
     public class AttackInputActionImpl : IActionInput
     {
