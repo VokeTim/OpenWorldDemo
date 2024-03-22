@@ -2,7 +2,6 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace OpenWorld.DOTS.PlayerControl
 {
@@ -12,11 +11,9 @@ namespace OpenWorld.DOTS.PlayerControl
 
         private readonly RefRW<LocalTransform> transform;
 
-        public void Move(float deltaTime) 
+        public void InputActionsMove(float deltaTime, Vector3 moveDir) 
         {
-            InputAction moveAction = GameManager.Instance.GetMoveAction();
-            Vector2 moveDir = moveAction.ReadValue<Vector2>();
-            transform.ValueRW.Position += new float3(moveDir.x, 0, moveDir.y) * playerData.ValueRO.moveSpeed * deltaTime;
+            transform.ValueRW.Position += (float3) moveDir * playerData.ValueRO.moveSpeed * deltaTime;
         }
     }
 }

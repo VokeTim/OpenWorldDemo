@@ -3,11 +3,6 @@ using UnityEngine;
 
 namespace OpenWorld.DOTS.PlayerControl
 {
-    public struct PlayerData : IComponentData 
-    {
-        public float moveSpeed;
-    }
-
     public class PlayerControlAuthoring : MonoBehaviour
     {
         public float moveSpeed = 5.0f;
