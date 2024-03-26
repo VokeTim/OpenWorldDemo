@@ -7,7 +7,7 @@ namespace OpenWorld.DOTS.PlayerControl
     [RequireMatchingQueriesForUpdate]
     [UpdateInGroup(typeof(OpenWorldGroup))]
     [BurstCompile]
-    public partial struct MoveSpeedGroup : ISystem
+    public partial struct PlayerMoveSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -35,7 +35,8 @@ namespace OpenWorld.DOTS.PlayerControl
             foreach (MovingAspect movingAspect in SystemAPI.Query<MovingAspect>())
             {
                 movingAspect.InputActionsMove(deltatime, moveDir);
-            }
+                GameManager.Instance.FollowTarget = (Vector3)movingAspect.GetLocalPosition();
+            }        
         }
     }
 }

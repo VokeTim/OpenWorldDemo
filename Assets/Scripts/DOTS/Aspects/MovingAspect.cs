@@ -15,5 +15,10 @@ namespace OpenWorld.DOTS.PlayerControl
         {
             transform.ValueRW.Position += (float3) moveDir * playerData.ValueRO.moveSpeed * deltaTime;
         }
+
+        public float3 GetLocalPosition() 
+        {
+            return transform.ValueRW.Position;
+        }
     }
 }

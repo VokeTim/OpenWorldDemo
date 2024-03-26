@@ -12,11 +12,11 @@ namespace OpenWorld.DOTS.PlayerControl
             public override void Bake(PlayerControlAuthoring authoring)
             {
                 var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
-                var data = new PlayerData
+                var PlayerMoveSpeedData = new PlayerData
                 {
                     moveSpeed = authoring.moveSpeed
                 };
-                AddComponent(entity, data);
+                AddComponent(entity, PlayerMoveSpeedData);
             }
         }
     }

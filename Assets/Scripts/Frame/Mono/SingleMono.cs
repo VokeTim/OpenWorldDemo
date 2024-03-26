@@ -4,9 +4,9 @@ public class SingleMono<T> : MonoBehaviour where T : SingleMono<T>
 {
     public static T Instance;
 
-    protected void Awake()
+    protected void Init() 
     {
-        if (Instance == null) 
+        if (Instance == null)
         {
             Instance = (T)this;
         }
