@@ -7,13 +7,16 @@ namespace OpenWorld.System
     {
         public float GetAxisValue(int axis)
         {
-            if (axis == 0)
+            if (!Cursor.visible)
             {
-                return GameManager.CameraMoveInput.x;
-            }
-            if (axis == 1)
-            {
-                return GameManager.CameraMoveInput.y;
+                if (axis == 0)
+                {
+                    return GameManager.CameraMoveInput.x;
+                }
+                if (axis == 1)
+                {
+                    return GameManager.CameraMoveInput.y;
+                }
             }
             return 0;
         }

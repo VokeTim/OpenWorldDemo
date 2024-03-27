@@ -1,6 +1,5 @@
 using Unity.Burst;
 using Unity.Entities;
-using UnityEngine;
 
 namespace OpenWorld.DOTS.PlayerControl
 {
@@ -12,7 +11,7 @@ namespace OpenWorld.DOTS.PlayerControl
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.EntityManager.AddComponent<PlayerMoveInputData>(state.SystemHandle);
+            
         }
 
         [BurstCompile]
@@ -24,18 +23,13 @@ namespace OpenWorld.DOTS.PlayerControl
         //[BurstCompile]  
         public void OnUpdate(ref SystemState state) 
         {
-            SystemAPI.SetComponent(state.SystemHandle, new PlayerMoveInputData
-            {
-                AxisX = GameManager.Instance.GetMoveAction().ReadValue<Vector2>().x,
-                AxisY = GameManager.Instance.GetMoveAction().ReadValue<Vector2>().y
-            });
             float deltatime = SystemAPI.Time.DeltaTime;
-            var playerInputData = state.EntityManager.GetComponentData<PlayerMoveInputData>(state.SystemHandle);
-            Vector3 moveDir = new Vector3(playerInputData.AxisX, 0, playerInputData.AxisY);
-            foreach (MovingAspect movingAspect in SystemAPI.Query<MovingAspect>())
+            var job = new PlayerInputMoveJob
             {
-                movingAspect.InputActionsMove(deltatime, moveDir);
-            }        
+                deltaTime = deltatime,
+            };
+            job.Schedule();
+
         }
     }
 }

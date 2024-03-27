@@ -11,12 +11,12 @@ namespace OpenWorld.System.InputSystem
             action.AddBinding("<Mouse>/leftButton");
             action.performed += OnAttack;
         }
-
+         
         private void OnAttack(InputAction.CallbackContext context)
         {
-            if (Cursor.visible == false) 
+            if (Cursor.visible) 
             {
-                Cursor.visible = true;
+                Cursor.visible = false;
             }
             Debug.Log("attack!");
         }

@@ -32,13 +32,25 @@ namespace OpenWorld
 
         private void Start()
         {
-            Cursor.visible = false;
+            //Cursor.visible = false;
         }
 
         private void Update()
         {
             CameraMoveInput = cameraMoveAction.ReadValue<Vector2>();
             //CameraMoveInput = Mouse.current.delta.ReadValue();
+            //TODO: 将按T箭显示或者隐藏鼠标以InputSystem的方式实现
+            if (Input.GetKeyDown(KeyCode.T)) 
+            {
+                if (Cursor.visible)
+                {
+                    Cursor.visible = false;
+                }
+                else 
+                {
+                    Cursor.visible = true;
+                }
+            }
         }
 
         private void LateUpdate()
@@ -52,5 +64,6 @@ namespace OpenWorld
             attackAction.Disable();
             cameraMoveAction.Disable();
         }
+
     }
 }
