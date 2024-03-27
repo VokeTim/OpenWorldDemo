@@ -37,8 +37,8 @@ namespace OpenWorld
 
         private void Update()
         {
-            //CameraMoveInput = cameraMoveAction.ReadValue<Vector2>();
-            CameraMoveInput = Mouse.current.delta.ReadValue();
+            CameraMoveInput = cameraMoveAction.ReadValue<Vector2>();
+            //CameraMoveInput = Mouse.current.delta.ReadValue();
         }
 
         private void LateUpdate()

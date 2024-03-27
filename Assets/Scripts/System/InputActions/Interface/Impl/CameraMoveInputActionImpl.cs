@@ -6,7 +6,7 @@ namespace OpenWorld.System.InputSystem
     {
         public void Init(ref InputAction action)
         {
-            action = new InputAction(binding: "<Mouse>/position");
+            action = new InputAction(binding: "<Mouse>/delta");
         }
     }
 }
