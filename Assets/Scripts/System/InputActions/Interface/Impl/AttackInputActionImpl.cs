@@ -11,7 +11,7 @@ namespace OpenWorld.System.InputSystem
             action.AddBinding("<Mouse>/leftButton");
             action.performed += OnAttack;
         }
-         
+
         private void OnAttack(InputAction.CallbackContext context)
         {
             if (Cursor.visible) 

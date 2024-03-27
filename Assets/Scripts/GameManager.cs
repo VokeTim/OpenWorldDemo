@@ -8,6 +8,7 @@ namespace OpenWorld
         private InputAction moveAction;
         private InputAction attackAction;
         private InputAction cameraMoveAction;
+        private InputAction cursorCtrlInputAction;
 
         public static Vector2 CameraMoveInput;
 
@@ -21,6 +22,7 @@ namespace OpenWorld
             systemControl.InitMoveAction(ref moveAction);
             systemControl.InitAttackAction(ref attackAction);
             systemControl.InitCameraMoveInputAction(ref cameraMoveAction);
+            systemControl.InitCursorCtrlInputAction(ref cursorCtrlInputAction);
         }
 
         private void OnEnable()
@@ -28,6 +30,7 @@ namespace OpenWorld
             moveAction.Enable();
             attackAction.Enable();
             cameraMoveAction.Enable();
+            cursorCtrlInputAction.Enable();
         }
 
         private void Start()
@@ -40,17 +43,17 @@ namespace OpenWorld
             CameraMoveInput = cameraMoveAction.ReadValue<Vector2>();
             //CameraMoveInput = Mouse.current.delta.ReadValue();
             //TODO: 将按T箭显示或者隐藏鼠标以InputSystem的方式实现
-            if (Input.GetKeyDown(KeyCode.T)) 
-            {
-                if (Cursor.visible)
-                {
-                    Cursor.visible = false;
-                }
-                else 
-                {
-                    Cursor.visible = true;
-                }
-            }
+            //if (Input.GetKeyDown(KeyCode.T)) 
+            //{
+            //    if (Cursor.visible)
+            //    {
+            //        Cursor.visible = false;
+            //    }
+            //    else 
+            //    {
+            //        Cursor.visible = true;
+            //    }
+            //}
         }
 
         private void LateUpdate()
@@ -63,6 +66,7 @@ namespace OpenWorld
             moveAction.Disable();
             attackAction.Disable();
             cameraMoveAction.Disable();
+            cursorCtrlInputAction.Disable();
         }
 
     }

@@ -25,5 +25,11 @@ namespace OpenWorld
             actions.IinitAction().Init(ref cameramoveInputAction);
         }
 
+        public void InitCursorCtrlInputAction(ref InputAction cursorCtrlInputAction) 
+        {
+            actions = new CursorCtrlInputAction();
+            actions.IinitAction().Init(ref cursorCtrlInputAction);
+        }
+
     }
 }
