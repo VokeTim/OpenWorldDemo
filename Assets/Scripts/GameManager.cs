@@ -7,41 +7,50 @@ namespace OpenWorld
     {
         private InputAction moveAction;
         private InputAction attackAction;
-        private Vector3 followTarget;
-        public Vector3 FollowTarget { get { return followTarget; } set { followTarget = value; } }
-        private Vector3 offset;
+        private InputAction cameraMoveAction;
+
+        public static Vector2 CameraMoveInput;
 
         public InputAction GetMoveAction() { return moveAction; }
 
         private void Awake()
         {
             Init();
+            CameraMoveInput = Vector2.zero;
             SystemControl systemControl = new SystemControl();
             systemControl.InitMoveAction(ref moveAction);
             systemControl.InitAttackAction(ref attackAction);
+            systemControl.InitCameraMoveInputAction(ref cameraMoveAction);
         }
 
         private void OnEnable()
         {
             moveAction.Enable();
             attackAction.Enable();
+            cameraMoveAction.Enable();
         }
 
         private void Start()
         {
-            followTarget = GameObject.FindGameObjectWithTag("Player").transform.position;
-            offset = Camera.main.transform.position - followTarget;
+            Cursor.visible = false;
+        }
+
+        private void Update()
+        {
+            //CameraMoveInput = cameraMoveAction.ReadValue<Vector2>();
+            CameraMoveInput = Mouse.current.delta.ReadValue();
         }
 
         private void LateUpdate()
         {
-            Camera.main.transform.position = followTarget + offset;
+            
         }
 
         private void OnDisable()
         {
             moveAction.Disable();
             attackAction.Disable();
+            cameraMoveAction.Disable();
         }
     }
 }

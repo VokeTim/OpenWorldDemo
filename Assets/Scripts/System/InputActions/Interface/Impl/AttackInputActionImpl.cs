@@ -14,6 +14,10 @@ namespace OpenWorld.System.InputSystem
 
         private void OnAttack(InputAction.CallbackContext context)
         {
+            if (Cursor.visible == false) 
+            {
+                Cursor.visible = true;
+            }
             Debug.Log("attack!");
         }
     }

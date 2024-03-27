@@ -5,16 +5,16 @@ namespace OpenWorld.DOTS.PlayerControl
 {
     public class PlayerControlAuthoring : MonoBehaviour
     {
-        public float moveSpeed = 5.0f;
-
         public class PlayerControlDataBaker : Baker<PlayerControlAuthoring>
         {
             public override void Bake(PlayerControlAuthoring authoring)
             {
+                PlayerController playerControler = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+                float movespeed = playerControler.GetMoveSpeed;
                 var entity = GetEntity(authoring, TransformUsageFlags.Dynamic);
                 var PlayerMoveSpeedData = new PlayerData
                 {
-                    moveSpeed = authoring.moveSpeed
+                    moveSpeed = movespeed
                 };
                 AddComponent(entity, PlayerMoveSpeedData);
             }

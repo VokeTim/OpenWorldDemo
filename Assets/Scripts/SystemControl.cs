@@ -19,5 +19,11 @@ namespace OpenWorld
             actions.IinitAction().Init(ref attackAction);
         }
 
+        public void InitCameraMoveInputAction(ref InputAction cameramoveInputAction) 
+        {
+            actions = new CameraMoveInputAction();
+            actions.IinitAction().Init(ref cameramoveInputAction);
+        }
+
     }
 }

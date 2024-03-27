@@ -35,7 +35,6 @@ namespace OpenWorld.DOTS.PlayerControl
             foreach (MovingAspect movingAspect in SystemAPI.Query<MovingAspect>())
             {
                 movingAspect.InputActionsMove(deltatime, moveDir);
-                GameManager.Instance.FollowTarget = (Vector3)movingAspect.GetLocalPosition();
             }        
         }
     }

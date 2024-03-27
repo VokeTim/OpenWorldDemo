@@ -1,6 +1,6 @@
 using Unity.Entities;
 
-namespace OpenWorld.DOTS.PlayerControl 
+namespace OpenWorld.DOTS.PlayerControl
 {
     public struct PlayerData : IComponentData
     {

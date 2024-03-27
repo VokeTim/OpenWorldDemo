@@ -1,6 +1,4 @@
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
 using UnityEngine;
 
 namespace OpenWorld.DOTS.PlayerControl
@@ -9,16 +7,10 @@ namespace OpenWorld.DOTS.PlayerControl
     {
         private readonly RefRO<PlayerData> playerData;
 
-        private readonly RefRW<LocalTransform> transform;
-
         public void InputActionsMove(float deltaTime, Vector3 moveDir) 
         {
-            transform.ValueRW.Position += (float3) moveDir * playerData.ValueRO.moveSpeed * deltaTime;
+            PlayerController.moveDir = moveDir * deltaTime * playerData.ValueRO.moveSpeed;
         }
 
-        public float3 GetLocalPosition() 
-        {
-            return transform.ValueRW.Position;
-        }
     }
 }
