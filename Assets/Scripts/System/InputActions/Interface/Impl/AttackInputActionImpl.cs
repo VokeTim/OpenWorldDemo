@@ -3,13 +3,34 @@ using UnityEngine.InputSystem;
 
 namespace OpenWorld.System.InputSystem
 {
-    public class AttackInputActionImpl : IActionInput
+    public class AttackInputActionImpl : BaseInputActionImpl, IInputAction
     {
-        public void Init(ref InputAction action)
+
+        public AttackInputActionImpl() 
+        {
+            Init();
+        }
+
+        public InputAction GetInputAction()
+        {
+            return action;
+        }
+
+        public void Init()
         {
             action = new InputAction();
             action.AddBinding("<Mouse>/leftButton");
             action.performed += OnAttack;
+        }
+
+        public void OnDisabled()
+        {
+            action.Disable();
+        }
+
+        public void OnEnabled()
+        {
+            action.Enable();
         }
 
         private void OnAttack(InputAction.CallbackContext context)

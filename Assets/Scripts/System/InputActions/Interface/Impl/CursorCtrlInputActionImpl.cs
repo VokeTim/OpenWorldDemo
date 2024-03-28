@@ -3,13 +3,34 @@ using UnityEngine.InputSystem;
 
 namespace OpenWorld.System.InputSystem
 {
-    public class CursorCtrlInputActionImpl : IActionInput
+    public class CursorCtrlInputActionImpl : BaseInputActionImpl, IInputAction
     {
-        public void Init(ref InputAction action)
+
+        public CursorCtrlInputActionImpl() 
+        {
+            Init();
+        }
+
+        public InputAction GetInputAction()
+        {
+            return action;
+        }
+
+        public void Init()
         {
             action = new InputAction();
             action.AddBinding("<Keyboard>/t");
             action.performed += OnKeyCodeDown;
+        }
+
+        public void OnDisabled()
+        {
+            action.Disable();
+        }
+
+        public void OnEnabled()
+        {
+            action.Enable();
         }
 
         private void OnKeyCodeDown(InputAction.CallbackContext context)

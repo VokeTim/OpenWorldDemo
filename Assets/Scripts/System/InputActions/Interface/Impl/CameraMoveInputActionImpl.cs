@@ -2,11 +2,32 @@ using UnityEngine.InputSystem;
 
 namespace OpenWorld.System.InputSystem
 {
-    public class CameraMoveInputActionImpl : IActionInput
+    public class CameraMoveInputActionImpl : BaseInputActionImpl, IInputAction
     {
-        public void Init(ref InputAction action)
+
+        public CameraMoveInputActionImpl() 
+        {
+            Init();
+        }
+
+        public InputAction GetInputAction()
+        {
+            return action;
+        }
+
+        public void Init()
         {
             action = new InputAction(binding: "<Mouse>/delta");
+        }
+
+        public void OnDisabled()
+        {
+            action.Disable();
+        }
+
+        public void OnEnabled()
+        {
+            action.Enable();
         }
     }
 }

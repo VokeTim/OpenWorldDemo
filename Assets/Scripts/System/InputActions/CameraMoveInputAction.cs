@@ -2,9 +2,9 @@ namespace OpenWorld.System.InputSystem
 {
     public class CameraMoveInputAction : BaseInputAction
     {
-        public override IActionInput IinitAction()
+        public CameraMoveInputAction() 
         {
-            return new CameraMoveInputActionImpl();
+            InputActionImpl = new CameraMoveInputActionImpl();
         }
     }
 }

@@ -2,9 +2,9 @@ namespace OpenWorld.System.InputSystem
 {
     public class CursorCtrlInputAction : BaseInputAction
     {
-        public override IActionInput IinitAction()
+        public CursorCtrlInputAction() 
         {
-            return new CursorCtrlInputActionImpl();
+            InputActionImpl = new CursorCtrlInputActionImpl();
         }
     }
 }

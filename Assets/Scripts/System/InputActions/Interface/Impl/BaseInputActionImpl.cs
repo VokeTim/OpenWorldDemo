@@ -2,8 +2,8 @@ using UnityEngine.InputSystem;
 
 namespace OpenWorld.System.InputSystem
 {
-    public interface IActionInput
+    public class BaseInputActionImpl
     {
-        public void Init(ref InputAction action);
+        protected InputAction action;
     }
 }

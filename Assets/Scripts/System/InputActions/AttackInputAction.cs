@@ -2,9 +2,9 @@ namespace OpenWorld.System.InputSystem
 {
     public class AttackInputAction : BaseInputAction
     {
-        public override IActionInput IinitAction()
+        public AttackInputAction() 
         {
-            return new AttackInputActionImpl();
+            InputActionImpl = new AttackInputActionImpl();
         }
     }
 }

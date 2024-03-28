@@ -1,3 +1,5 @@
+using OpenWorld.System.InputSystem;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,32 +7,32 @@ namespace OpenWorld
 {
     public class GameManager : SingleMono<GameManager>
     {
-        private InputAction moveAction;
-        private InputAction attackAction;
-        private InputAction cameraMoveAction;
-        private InputAction cursorCtrlInputAction;
+        private SystemControl systemControl;
 
         public static Vector2 CameraMoveInput;
 
-        public InputAction GetMoveAction() { return moveAction; }
+        public InputAction GetMoveAction() 
+        {
+            InputAction playerInputAction = null;
+            IEnumerable<BaseInputAction> moveInputActions = systemControl.SearchInputAction<MoveInputAction>();
+            foreach (BaseInputAction action in moveInputActions) 
+            {
+                playerInputAction = action.InputActionImpl.GetInputAction();
+            }
+            return playerInputAction; 
+        }
 
         private void Awake()
         {
             Init();
             CameraMoveInput = Vector2.zero;
-            SystemControl systemControl = new SystemControl();
-            systemControl.InitMoveAction(ref moveAction);
-            systemControl.InitAttackAction(ref attackAction);
-            systemControl.InitCameraMoveInputAction(ref cameraMoveAction);
-            systemControl.InitCursorCtrlInputAction(ref cursorCtrlInputAction);
+            systemControl = new SystemControl();
+            systemControl.InitInputSystem();
         }
 
         private void OnEnable()
         {
-            moveAction.Enable();
-            attackAction.Enable();
-            cameraMoveAction.Enable();
-            cursorCtrlInputAction.Enable();
+            systemControl.OnEnabledAllInputActions();
         }
 
         private void Start()
@@ -40,33 +42,16 @@ namespace OpenWorld
 
         private void Update()
         {
-            CameraMoveInput = cameraMoveAction.ReadValue<Vector2>();
-            //CameraMoveInput = Mouse.current.delta.ReadValue();
-            //TODO: 将按T箭显示或者隐藏鼠标以InputSystem的方式实现
-            //if (Input.GetKeyDown(KeyCode.T)) 
-            //{
-            //    if (Cursor.visible)
-            //    {
-            //        Cursor.visible = false;
-            //    }
-            //    else 
-            //    {
-            //        Cursor.visible = true;
-            //    }
-            //}
-        }
-
-        private void LateUpdate()
-        {
-            
+            IEnumerable<BaseInputAction> cameraInputActions = systemControl.SearchInputAction<CameraMoveInputAction>();
+            foreach (CameraMoveInputAction cameraMoveInputAction in cameraInputActions) 
+            {
+                CameraMoveInput = cameraMoveInputAction.InputActionImpl.GetInputAction().ReadValue<Vector2>();
+            }       
         }
 
         private void OnDisable()
         {
-            moveAction.Disable();
-            attackAction.Disable();
-            cameraMoveAction.Disable();
-            cursorCtrlInputAction.Disable();
+            systemControl.OnDisabledAllInputActions();
         }
 
     }
