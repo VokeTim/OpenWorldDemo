@@ -1,8 +1,8 @@
 namespace OpenWorld.System.InputSystem
 {
-    public class MoveInputAction : BaseInputAction
+    public class PlayerMoveInputAction : BaseInputAction
     {
-        public MoveInputAction() 
+        public PlayerMoveInputAction() 
         {
             InputActionImpl = new MoveInputActionImpl();
         }

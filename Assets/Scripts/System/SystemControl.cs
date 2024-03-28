@@ -2,7 +2,7 @@ using OpenWorld.System.InputSystem;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OpenWorld
+namespace OpenWorld.System
 {
     public class SystemControl
     {
@@ -15,7 +15,7 @@ namespace OpenWorld
         /// </summary>
         public void InitInputSystem() 
         {
-            actions = new MoveInputAction();
+            actions = new PlayerMoveInputAction();
             inputActions.Add(actions);
             actions = new AttackInputAction();
             inputActions.Add(actions);

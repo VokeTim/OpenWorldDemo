@@ -1,3 +1,4 @@
+using OpenWorld.System;
 using OpenWorld.System.InputSystem;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace OpenWorld
         public InputAction GetMoveAction() 
         {
             InputAction playerInputAction = null;
-            IEnumerable<BaseInputAction> moveInputActions = systemControl.SearchInputAction<MoveInputAction>();
+            IEnumerable<BaseInputAction> moveInputActions = systemControl.SearchInputAction<PlayerMoveInputAction>();
             foreach (BaseInputAction action in moveInputActions) 
             {
                 playerInputAction = action.InputActionImpl.GetInputAction();
