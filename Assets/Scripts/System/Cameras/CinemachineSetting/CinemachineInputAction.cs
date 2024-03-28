@@ -17,13 +17,11 @@ namespace OpenWorld.System
             {
                 if (axis == 0)
                 {
-                    float rs = xAxisInvert ? -GameManager.CameraMoveInput.x : GameManager.CameraMoveInput.x;
-                    return rs;
+                    return GameManager.CameraMoveInput.x;
                 }
                 if (axis == 1)
                 {
-                    float rs = yAxisInvert ? -GameManager.CameraMoveInput.y : GameManager.CameraMoveInput.y;
-                    return rs;
+                    return GameManager.CameraMoveInput.y;
                 }
             }
             return 0;

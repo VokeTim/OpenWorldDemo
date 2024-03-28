@@ -51,7 +51,7 @@ namespace OpenWorld.System
         /// 检索InputSystem中的某个类型的InputAction的集合
         /// </summary>
         /// <typeparam name="T">InputAction的类型</typeparam>
-        /// <returns>InputAction的集合</returns>
+        /// <returns>BaseInputAction的集合</returns>
         public IEnumerable<BaseInputAction> SearchInputAction<T>() where T : BaseInputAction
         {
             if (inputActions == null || inputActions.Count == 0) return null;

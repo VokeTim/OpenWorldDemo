@@ -1,3 +1,4 @@
+using OpenWorld.System;
 using Unity.Entities;
 using UnityEngine;
 
@@ -16,7 +17,14 @@ namespace OpenWorld.DOTS.PlayerControl
                 {
                     moveSpeed = movespeed
                 };
+                CinemachineInputAction customCinemachineCtrlInput = GameObject.FindGameObjectWithTag("CinemachineCamera").GetComponent<CinemachineInputAction>();
+                var CameraCtrlData = new CameraControlData
+                {
+                    xAxisInvert = customCinemachineCtrlInput.xAxisInvert,
+                    yAxisInvert = customCinemachineCtrlInput.yAxisInvert
+                };
                 AddComponent(entity, PlayerMoveSpeedData);
+                AddComponent(entity, CameraCtrlData);
             }
         }
     }

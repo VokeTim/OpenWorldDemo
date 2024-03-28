@@ -8,11 +8,12 @@ namespace OpenWorld
 {
     public class GameManager : SingleMono<GameManager>
     {
-        private SystemControl systemControl;
+        [HideInInspector]
+        public SystemControl systemControl;
 
         public static Vector2 CameraMoveInput;
 
-        public InputAction GetMoveAction() 
+        public InputAction GetPlayerMoveAction() 
         {
             InputAction playerInputAction = null;
             IEnumerable<BaseInputAction> moveInputActions = systemControl.SearchInputAction<PlayerMoveInputAction>();
@@ -21,6 +22,16 @@ namespace OpenWorld
                 playerInputAction = action.InputActionImpl.GetInputAction();
             }
             return playerInputAction; 
+        }
+
+        public Vector2 GetCameraMoveAction() 
+        { 
+            IEnumerable<BaseInputAction> cameraCtrlInputAction = systemControl.SearchInputAction<CameraMoveInputAction>();
+            foreach (BaseInputAction action in cameraCtrlInputAction) 
+            {
+                CameraMoveInput = action.InputActionImpl.GetInputAction().ReadValue<Vector2>();
+            }
+            return CameraMoveInput;
         }
 
         private void Awake()
@@ -43,11 +54,11 @@ namespace OpenWorld
 
         private void Update()
         {
-            IEnumerable<BaseInputAction> cameraInputActions = systemControl.SearchInputAction<CameraMoveInputAction>();
-            foreach (CameraMoveInputAction cameraMoveInputAction in cameraInputActions) 
-            {
-                CameraMoveInput = cameraMoveInputAction.InputActionImpl.GetInputAction().ReadValue<Vector2>();
-            }       
+            //IEnumerable<BaseInputAction> cameraInputActions = systemControl.SearchInputAction<CameraMoveInputAction>();
+            //foreach (CameraMoveInputAction cameraMoveInputAction in cameraInputActions) 
+            //{
+            //    CameraMoveInput = cameraMoveInputAction.InputActionImpl.GetInputAction().ReadValue<Vector2>();
+            //}       
         }
 
         private void OnDisable()

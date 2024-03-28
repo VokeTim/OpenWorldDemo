@@ -1,12 +1,14 @@
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Jobs;
+using UnityEngine;
 
 namespace OpenWorld.DOTS.PlayerControl
 {
     [RequireMatchingQueriesForUpdate]
     [UpdateInGroup(typeof(OpenWorldGroup))]
     [BurstCompile]
-    public partial struct PlayerMoveSystem : ISystem
+    public partial struct PlayerInputSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -24,12 +26,13 @@ namespace OpenWorld.DOTS.PlayerControl
         public void OnUpdate(ref SystemState state) 
         {
             float deltatime = SystemAPI.Time.DeltaTime;
-            var job = new PlayerInputMoveJob
+            var PlayerMoveInputjob = new PlayerInputMoveJob
             {
                 deltaTime = deltatime,
             };
-            job.Schedule();
-
+            PlayerMoveInputjob.Schedule();
+            var CameraCtrlJob = new CameraMoveJob();
+            CameraCtrlJob.Schedule();
         }
     }
 }
