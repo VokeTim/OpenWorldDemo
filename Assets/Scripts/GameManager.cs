@@ -30,6 +30,17 @@ namespace OpenWorld
             return playerInputAction; 
         }
 
+        public InputAction GetMenuCtrlInputAction() 
+        {
+            InputAction menuCtrlInputAction = null;
+            IEnumerable<BaseInputAction> menuCtrlInputActions = systemControl.SearchInputAction<MenuCtrlInputAction>();
+            foreach (BaseInputAction action in menuCtrlInputActions) 
+            {
+                menuCtrlInputAction = action.InputActionImpl.GetInputAction();
+            }
+            return menuCtrlInputAction;
+        }
+
         public Vector2 GetCameraMoveAction() 
         { 
             IEnumerable<BaseInputAction> cameraCtrlInputAction = systemControl.SearchInputAction<CameraMoveInputAction>();
