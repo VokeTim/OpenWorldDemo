@@ -4,15 +4,6 @@ namespace OpenWorld.UI
 {
     public class MainMenuUI : MonoBehaviour
     {
-
-        private void Update()
-        {
-            //if (Input.GetKeyDown(KeyCode.C)) 
-            //{
-            //    showMenu = !showMenu;
-            //}
-        }
-
         private void OnGUI()
         {
             if (GameManager.Instance.IsShowMenu)

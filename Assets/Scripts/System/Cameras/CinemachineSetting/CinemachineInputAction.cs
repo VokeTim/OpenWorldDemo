@@ -17,11 +17,11 @@ namespace OpenWorld.System
             {
                 if (axis == 0)
                 {
-                    return GameManager.CameraMoveInput.x;
+                    return GameManager.Instance.CameraMoveInput.x;
                 }
                 if (axis == 1)
                 {
-                    return GameManager.CameraMoveInput.y;
+                    return GameManager.Instance.CameraMoveInput.y;
                 }
             }
             return 0;

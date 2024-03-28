@@ -10,7 +10,7 @@ namespace OpenWorld.DOTS.PlayerControl
             Vector2 cameraMoveCtrl = GameManager.Instance.GetCameraMoveAction();
             float x = cameraControlData.xAxisInvert ? -cameraMoveCtrl.x : cameraMoveCtrl.x;
             float y = cameraControlData.yAxisInvert ? -cameraMoveCtrl.y : cameraMoveCtrl.y;
-            GameManager.CameraMoveInput = new Vector2(x, y);
+            GameManager.Instance.CameraMoveInput = new Vector2(x, y);
         }
     }
 }

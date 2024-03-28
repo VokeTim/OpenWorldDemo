@@ -11,7 +11,11 @@ namespace OpenWorld
         [HideInInspector]
         public SystemControl systemControl;
 
-        public static Vector2 CameraMoveInput;
+        public Vector2 CameraMoveInput;
+
+        public GameObject PlayerController;
+
+        public Vector3 PlayerMove;
 
         public bool IsShowMenu = false;
 
@@ -56,7 +60,7 @@ namespace OpenWorld
 
         private void Update()
         {
-            
+            PlayerController.transform.position += PlayerMove;
         }
 
         private void OnDisable()

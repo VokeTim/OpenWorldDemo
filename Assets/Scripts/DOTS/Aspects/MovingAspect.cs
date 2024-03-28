@@ -9,7 +9,7 @@ namespace OpenWorld.DOTS.PlayerControl
 
         public void InputActionsMove(float deltaTime, Vector3 moveDir) 
         {
-            PlayerController.moveDir = moveDir * deltaTime * playerData.ValueRO.moveSpeed;
+            GameManager.Instance.PlayerMove = moveDir * deltaTime * playerData.ValueRO.moveSpeed;
         }
 
     }
