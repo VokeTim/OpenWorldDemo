@@ -23,6 +23,8 @@ namespace OpenWorld.System
             inputActions.Add(actions);
             actions = new CursorCtrlInputAction();
             inputActions.Add(actions);
+            actions = new MenuCtrlInputAction();
+            inputActions.Add(actions);
         }
 
         /// <summary>

@@ -13,6 +13,8 @@ namespace OpenWorld
 
         public static Vector2 CameraMoveInput;
 
+        public bool IsShowMenu = false;
+
         public InputAction GetPlayerMoveAction() 
         {
             InputAction playerInputAction = null;
@@ -54,11 +56,7 @@ namespace OpenWorld
 
         private void Update()
         {
-            //IEnumerable<BaseInputAction> cameraInputActions = systemControl.SearchInputAction<CameraMoveInputAction>();
-            //foreach (CameraMoveInputAction cameraMoveInputAction in cameraInputActions) 
-            //{
-            //    CameraMoveInput = cameraMoveInputAction.InputActionImpl.GetInputAction().ReadValue<Vector2>();
-            //}       
+            
         }
 
         private void OnDisable()
