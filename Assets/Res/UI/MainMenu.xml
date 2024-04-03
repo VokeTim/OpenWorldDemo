@@ -1,0 +1,6 @@
+<Root>
+    <node style="MainMenu" id="0" type="window">
+        <label textalign="MiddleCenter" style="titleStyle">主菜单</label>
+        <button style="closeButton"></button>
+    </node>
+</Root>

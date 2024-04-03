@@ -10,6 +10,11 @@ namespace OpenWorld.System.InputSystem
 
         public void OnDisabled();
 
-        public InputAction GetInputAction();
+        /// <summary>
+        /// 根据数据类型读取InputAction的数据
+        /// </summary>
+        /// <typeparam name="T">数据类型</typeparam>
+        /// <returns>T</returns>
+        public T GetReadValue<T>() where T : struct;
     }
 }

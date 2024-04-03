@@ -5,14 +5,14 @@ namespace OpenWorld.System.InputSystem
     public class MoveInputActionImpl : BaseInputActionImpl, IInputAction
     {
 
-        public MoveInputActionImpl() 
+        public MoveInputActionImpl()
         {
             Init();
         }
 
-        public InputAction GetInputAction()
+        public T GetReadValue<T>() where T : struct
         {
-            return action;
+            return action.ReadValue<T>();
         }
 
         public void Init()

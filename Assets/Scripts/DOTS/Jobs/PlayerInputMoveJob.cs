@@ -9,7 +9,7 @@ namespace OpenWorld.DOTS.PlayerControl
 
         void Execute(MovingAspect movingAspect) 
         {
-            Vector2 playerInput = GameManager.Instance.GetPlayerMoveAction().ReadValue<Vector2>();
+            Vector2 playerInput = GameManager.Instance.GetPlayerMoveDir();
             Vector3 moveDir = new Vector3(playerInput.x, 0, playerInput.y);
             movingAspect.InputActionsMove(deltaTime, moveDir);
         }

@@ -10,9 +10,9 @@ namespace OpenWorld.System.InputSystem
             Init();
         }
 
-        public InputAction GetInputAction()
+        public T GetReadValue<T>() where T : struct
         {
-            return action;
+            return action.ReadValue<T>();
         }
 
         public void Init()

@@ -19,26 +19,15 @@ namespace OpenWorld
 
         public bool IsShowMenu = false;
 
-        public InputAction GetPlayerMoveAction() 
+        public Vector2 GetPlayerMoveDir() 
         {
-            InputAction playerInputAction = null;
+            Vector2 moveDir = Vector2.zero;
             IEnumerable<BaseInputAction> moveInputActions = systemControl.SearchInputAction<PlayerMoveInputAction>();
-            foreach (BaseInputAction action in moveInputActions) 
+            foreach (BaseInputAction action in moveInputActions)
             {
-                playerInputAction = action.InputActionImpl.GetInputAction();
+                moveDir = action.InputActionImpl.GetReadValue<Vector2>();
             }
-            return playerInputAction; 
-        }
-
-        public InputAction GetMenuCtrlInputAction() 
-        {
-            InputAction menuCtrlInputAction = null;
-            IEnumerable<BaseInputAction> menuCtrlInputActions = systemControl.SearchInputAction<MenuCtrlInputAction>();
-            foreach (BaseInputAction action in menuCtrlInputActions) 
-            {
-                menuCtrlInputAction = action.InputActionImpl.GetInputAction();
-            }
-            return menuCtrlInputAction;
+            return moveDir;
         }
 
         public Vector2 GetCameraMoveAction() 
@@ -46,7 +35,7 @@ namespace OpenWorld
             IEnumerable<BaseInputAction> cameraCtrlInputAction = systemControl.SearchInputAction<CameraMoveInputAction>();
             foreach (BaseInputAction action in cameraCtrlInputAction) 
             {
-                CameraMoveInput = action.InputActionImpl.GetInputAction().ReadValue<Vector2>();
+                CameraMoveInput = action.InputActionImpl.GetReadValue<Vector2>();
             }
             return CameraMoveInput;
         }
