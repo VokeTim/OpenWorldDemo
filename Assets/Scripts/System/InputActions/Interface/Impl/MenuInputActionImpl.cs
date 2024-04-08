@@ -34,9 +34,16 @@ namespace OpenWorld.System.InputSystem
 
         private void OnButtonClick(InputAction.CallbackContext context)
         {
-            //TODO: 开启和关闭的功能细化 开启后显示鼠标禁用移动输入和视角输入 关闭后隐藏鼠标启用移动输入和视角输入
-            Cursor.visible = !Cursor.visible;
-            GameManager.Instance.IsShowMenu = !GameManager.Instance.IsShowMenu;
+            // 开启后显示鼠标禁用移动输入和视角输入 关闭后隐藏鼠标启用移动输入和视角输入
+            var currentState = GameManager.Instance.DisplayWindow;
+            if (currentState == IsDisplayWindow.None)
+            {
+                GameManager.Instance.SetIsDisplayWindow(IsDisplayWindow.Block);
+            }
+            else 
+            {
+                GameManager.Instance.SetIsDisplayWindow(IsDisplayWindow.None);
+            }
         }
     }
 }

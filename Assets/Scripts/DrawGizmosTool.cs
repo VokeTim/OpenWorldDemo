@@ -1,7 +1,6 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class DrawTool : MonoBehaviour
+public class DrawGizmosTool : MonoBehaviour
 {
     public Color circleColor = Color.red;
 
