@@ -56,6 +56,9 @@ namespace OpenWorld
         private void Start()
         {
             //Cursor.visible = false;
+            //var attributes = typeof(TestAttr).GetCustomAttributes(typeof(TestAttribute), false);
+            //var attribute = (TestAttribute)attributes[0];
+            //Debug.Log("test:"+attribute.Value);
         }
 
         private void Update()

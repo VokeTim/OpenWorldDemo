@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +19,7 @@ namespace OpenWorld.System.InputSystem
         {
             action = new InputAction();
             action.AddBinding("<Keyboard>/escape");
-            action.performed += OnKeyboard;
+            action.performed += OnButtonClick;
         }
 
         public void OnDisabled()
@@ -35,7 +32,7 @@ namespace OpenWorld.System.InputSystem
             action.Enable();
         }
 
-        private void OnKeyboard(InputAction.CallbackContext context)
+        private void OnButtonClick(InputAction.CallbackContext context)
         {
             //TODO: 开启和关闭的功能细化 开启后显示鼠标禁用移动输入和视角输入 关闭后隐藏鼠标启用移动输入和视角输入
             Cursor.visible = !Cursor.visible;

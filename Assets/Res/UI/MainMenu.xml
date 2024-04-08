@@ -1,6 +1,11 @@
-<Root>
-    <node style="MainMenu" id="0" type="window">
-        <label textalign="MiddleCenter" style="titleStyle">主菜单</label>
-        <button style="closeButton"></button>
-    </node>
+<?xml version="1.0" encoding="UTF-8"?>
+<Root class="MainMenu">
+    <layout type="horizontal">  
+        <label>输入</label>
+        <input/>
+    </layout>
+    <layout type="vertical">
+        <label>Test</label>
+        <button>Button</button>
+    </layout>
 </Root>
