@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Test("TestAttr")]
+[Test("123")]
 public class TestAttr
 {
     public TestAttr() 

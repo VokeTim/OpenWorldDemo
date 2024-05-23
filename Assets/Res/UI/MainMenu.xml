@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root class="MainMenu">
+<Root >
     <layout type="horizontal">  
         <label>输入</label>
         <input/>
-    </layout>
-    <layout type="vertical">
-        <label>Test</label>
-        <button>Button</button>
     </layout>
 </Root>

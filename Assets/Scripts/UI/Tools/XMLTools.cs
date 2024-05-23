@@ -42,5 +42,20 @@ namespace OpenWorld.UI.Tools
         {
             return xmlNode.NodeType == XmlNodeType.Text;
         }
+
+        public static string GetXmlNodeAttributeValueByItemName(XmlNode xmlNode, string attribute) 
+        {
+            string value;
+            try
+            {
+                value = xmlNode.Attributes.GetNamedItem(attribute).Value;
+            }
+            catch (NullReferenceException nullex)
+            {
+                Debug.LogException(nullex);
+                return null;
+            }
+            return value;
+        }
     }
 }

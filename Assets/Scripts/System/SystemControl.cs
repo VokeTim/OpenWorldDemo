@@ -1,63 +1,42 @@
-using OpenWorld.System.InputSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using UnityEngine.InputSystem;
 
 namespace OpenWorld.System
 {
     public class SystemControl
     {
-        private BaseInputAction actions;
 
-        private List<BaseInputAction> inputActions = new List<BaseInputAction>();
+        public InputActionMap actions;
 
         /// <summary>
         /// 初始化InputSystem的所有InputAction
         /// </summary>
-        public void InitInputSystem() 
+        public void InitInputSystem()
         {
-            actions = new PlayerMoveInputAction();
-            inputActions.Add(actions);
-            actions = new AttackInputAction();
-            inputActions.Add(actions);
-            actions = new CameraMoveInputAction();
-            inputActions.Add(actions);
-            actions = new CursorCtrlInputAction();
-            inputActions.Add(actions);
-            actions = new MenuCtrlInputAction();
-            inputActions.Add(actions);
-        }
-
-        /// <summary>
-        /// 开启所有InputSystem中的所有InputAction
-        /// </summary>
-        public void OnEnabledAllInputActions() 
-        {
-            foreach (BaseInputAction action in inputActions) 
+            actions = new InputActionMap();
+            // 获取当前程序集
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            // 使用反射获取所有带有InputSystemLoadOperationAttribute的类
+            List<Type> typesWithReflectableAttribute = assembly.GetTypes()
+                .Where(type => type.GetCustomAttributes(typeof(InputSystemLoadOperationAttribute), true).Any()).ToList();
+            foreach (Type type in typesWithReflectableAttribute)
             {
-                action.InputActionImpl.OnEnabled();
+                // 获取InputAction的名称
+                var actionName = type.GetCustomAttribute<InputSystemLoadOperationAttribute>().InputActionName;
+                // 实例化对象
+                object instance = Activator.CreateInstance(type);
+                MethodInfo methodInfo = type.GetMethod("SetInputAction");
+                methodInfo.Invoke(instance, new object[] { actions, actionName });
             }
         }
 
-        /// <summary>
-        /// 关闭所有InputSystem中的所有InputAction
-        /// </summary>
-        public void OnDisabledAllInputActions() 
+        public InputAction GetInputActionByActionName(InputActionMap actions, string InputActionName) 
         {
-            foreach (BaseInputAction action in inputActions) 
-            {
-                action.InputActionImpl.OnDisabled();
-            }
-        }
-
-        /// <summary>
-        /// 检索InputSystem中的某个类型的InputAction的集合
-        /// </summary>
-        /// <typeparam name="T">InputAction的类型</typeparam>
-        /// <returns>BaseInputAction的集合</returns>
-        public IEnumerable<BaseInputAction> SearchInputAction<T>() where T : BaseInputAction
-        {
-            if (inputActions == null || inputActions.Count == 0) return null;
-            return inputActions.OfType<T>();
+            InputAction action = actions.FindAction(InputActionName);
+            return action;
         }
     }
 }

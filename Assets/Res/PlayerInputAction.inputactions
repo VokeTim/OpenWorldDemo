@@ -1,0 +1,78 @@
+{
+    "name": "PlayerInputAction",
+    "maps": [
+        {
+            "name": "KeyBoardAndMouse",
+            "id": "0ccbb664-d4cd-450c-87f2-d5498244dbe8",
+            "actions": [
+                {
+                    "name": "MoveMent",
+                    "type": "Value",
+                    "id": "07fec60c-d5ca-4676-a008-a95e6ae3d81d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "bdf67c28-c88b-42ee-9ecf-d3bd3c5ad322",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveMent",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "9ca72a4b-1d49-49b4-8d9e-9e81d4a14818",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveMent",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "58b1a191-cfcf-410f-a19b-219237ae26fc",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveMent",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "8d397e28-87c2-470c-8937-16c89e27ffdd",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveMent",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "8e473fb3-6cd6-43bb-a87b-7ec93b2f4bd1",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveMent",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

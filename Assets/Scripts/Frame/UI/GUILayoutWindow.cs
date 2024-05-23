@@ -1,10 +1,16 @@
 using OpenWorld.UI.Tools;
-using System;
 using System.Xml;
 using UnityEngine;
 
 namespace OpenWorld.Framework.UI
 {
+    public enum WindowType 
+    {
+        IconAndTitle,
+        IconAndNoTitle
+    }
+
+
     public class GUILayoutWindow : GUILayoutBase
     {
         public int windowID;
@@ -16,9 +22,12 @@ namespace OpenWorld.Framework.UI
 
         public override void DrawGUIElement()
         {
-            //TODO: 动态创建WindowID
+            //TODO: 动态创建WindowID 开启的窗口不只一个的情况处理
             windowID = 0;
-            GUILayout.Window(windowID, new Rect(550, 160, 700, 700), OnWindow, new GUIContent(), GUILayout.Width(800), GUILayout.Height(735));
+            string position = XMLTools.GetXmlNodeAttributeValueByItemName(xmlNode, "rect");
+            Rect windowRect = new Rect(UIDefaultStyleConstance.WindowDefaultPositionOnScreenX, UIDefaultStyleConstance.WindowDefaultPositionOnScreenY, UIDefaultStyleConstance.WindowDefaultWdith, UIDefaultStyleConstance.WindowDefaultHeight);
+            GUIStyle defaultStyle = GUI.skin.GetStyle("WindowStyle");
+            GUILayout.Window(windowID, windowRect, OnWindow, new GUIContent(), defaultStyle);
         }
 
         private void OnWindow(int id)
