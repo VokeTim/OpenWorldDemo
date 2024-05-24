@@ -23,7 +23,6 @@ namespace OpenWorld.System
                 axisInput = cameraControlData.cameraMoveInput;
             }
             entityArray.Dispose();
-            Debug.Log(axisInput);
             if (!Cursor.visible)
             {
                 if (axis == 0)

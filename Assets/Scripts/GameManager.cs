@@ -1,5 +1,6 @@
 using OpenWorld.System;
 using OpenWorld.System.UI;
+using System;
 using UnityEngine;
 
 namespace OpenWorld
@@ -7,12 +8,16 @@ namespace OpenWorld
     // 是否展示窗口
     public enum IsDisplayWindow
     {
-        None, 
+        None,
         Block
     }
 
     public class GameManager : SingleMono<GameManager>
     {
+        private Action updateAction;
+        private Action lateUpdateAction;
+        private Action fixedUpdateAction;
+
         [HideInInspector]
         public SystemControl systemControl;
 
@@ -31,8 +36,6 @@ namespace OpenWorld
             systemControl = new SystemControl();
             systemControl.InitInputSystem();
             DisplayWindow = IsDisplayWindow.None;
-            //SetIsDisplayWindow(IsDisplayWindow.None);
-            UISystem = new UISystem();
         }
 
         private void OnEnable()
@@ -47,6 +50,17 @@ namespace OpenWorld
 
         private void Update()
         {
+            updateAction?.Invoke();
+        }
+
+        private void LateUpdate()
+        {
+            lateUpdateAction?.Invoke();
+        }
+
+        private void FixedUpdate()
+        {
+            fixedUpdateAction?.Invoke();
         }
 
         private void OnDisable()
@@ -54,5 +68,34 @@ namespace OpenWorld
             systemControl.actions.Disable();
         }
 
+        public void AddUpdateListener(Action action) 
+        {
+            updateAction += action;
+        }
+
+        public void RemoveUpdateListener(Action action)
+        {
+            updateAction -= action;
+        }
+
+        public void AddLateUpdateListener(Action action) 
+        {
+            lateUpdateAction += action;
+        }
+
+        public void RemoveLateUpdateListener(Action action) 
+        {
+            lateUpdateAction -= action;
+        }
+
+        public void AddFixedUpdateListener(Action action) 
+        {
+            fixedUpdateAction += action;
+        }
+
+        public void RemoveFixedUpdateListener(Action action) 
+        {
+            fixedUpdateAction -= action;
+        }
     }
 }

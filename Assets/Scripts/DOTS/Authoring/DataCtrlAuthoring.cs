@@ -15,11 +15,11 @@ namespace OpenWorld.DOTS.Authoring
                 var DataCtrl = new PlayerCtrlData
                 {
                     moveSpeed = 0,
-                    moveVelocity = 0,
                     moveDir = new Unity.Mathematics.float3(0, 0, 0),
                     xAxisInvert = false,
                     yAxisInvert = false,
-                    cameraMoveInput = new Unity.Mathematics.float2(0, 0)
+                    cameraMoveInput = new Unity.Mathematics.float2(0, 0),
+                    mouseSensitivity = 1
                 };
                 AddComponent(entity, DataCtrl);
             }

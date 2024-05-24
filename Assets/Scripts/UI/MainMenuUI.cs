@@ -23,7 +23,7 @@ namespace OpenWorld.UI
 
         private void OnGUI()
         {
-            GameManager.Instance.UISystem.LoadGUISkin();
+            //GameManager.Instance.UISystem.LoadGUISkin();
             //if (GameManager.Instance.DisplayWindow == IsDisplayWindow.Block)
             //{
             //    XMLTools.TraverseNodes(xml.DocumentElement);

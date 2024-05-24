@@ -8,9 +8,6 @@ namespace OpenWorld.DOTS.Commponent
         // 移动速度
         public double moveSpeed;
 
-        // 运动速率
-        public double moveVelocity;
-
         // 移动方向
         public float3 moveDir;
 
@@ -22,5 +19,8 @@ namespace OpenWorld.DOTS.Commponent
 
         // 相机移动输入
         public float2 cameraMoveInput;
+
+        // 鼠标灵敏度
+        public double mouseSensitivity;
     }
 }
