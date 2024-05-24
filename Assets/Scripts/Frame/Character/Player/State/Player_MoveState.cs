@@ -4,7 +4,8 @@ namespace OpenWorld.Framework.Character.Player
     {
         public override void Enter()
         {
-            player.PlayAnimation("Move");
+            //player.PlayAnimation("Move");
+            player.PlayAnimation("MoveMotionTree");
         }
 
         public override void Update()

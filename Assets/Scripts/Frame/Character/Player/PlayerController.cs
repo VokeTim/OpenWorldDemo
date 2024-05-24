@@ -25,6 +25,8 @@ namespace OpenWorld.Framework.Character
             Init();
             // 默认进入状态机的状态
             ChangeState(PlayerState.Idle);
+            model.Animator.SetFloat("MoveX", 0);
+            model.Animator.SetFloat("MoveY", 0);
         }
 
         private void Update()
@@ -83,6 +85,8 @@ namespace OpenWorld.Framework.Character
                 Vector3 moveDir = new Vector3(playerData.moveDir.x, 0, playerData.moveDir.z);
                 playertransform.position += moveDir;
                 //animator.SetFloat("velocity", (float) playerData.moveVelocity);
+                model.Animator.SetFloat("MoveX", playerData.moveDir.x);
+                model.Animator.SetFloat("MoveY", playerData.moveDir.z);
             }
             DOTSUtils.DisposeEntitiesArray(entityArray);
         }
