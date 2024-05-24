@@ -10,8 +10,6 @@ namespace OpenWorld.Framework.Character
     {
         public float velocity;
 
-        public Animator animator;
-
         private float moveSpeed;
 
         private float mouseSensitivity;
