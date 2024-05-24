@@ -84,7 +84,6 @@ namespace OpenWorld.Framework.Character
                 var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
                 Vector3 moveDir = new Vector3(playerData.moveDir.x, 0, playerData.moveDir.z);
                 playertransform.position += moveDir;
-                //animator.SetFloat("velocity", (float) playerData.moveVelocity);
                 model.Animator.SetFloat("MoveX", playerData.moveDir.x);
                 model.Animator.SetFloat("MoveY", playerData.moveDir.z);
             }

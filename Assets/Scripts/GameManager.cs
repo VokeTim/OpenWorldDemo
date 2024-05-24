@@ -45,7 +45,8 @@ namespace OpenWorld
 
         private void Start()
         {
-
+            // 防止非输入状态下触发输入法 
+            Input.imeCompositionMode = IMECompositionMode.Auto;
         }
 
         private void Update()
