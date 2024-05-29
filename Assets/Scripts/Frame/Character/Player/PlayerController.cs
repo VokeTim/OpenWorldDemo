@@ -40,6 +40,11 @@ namespace OpenWorld.Framework.Character
             SetPlayerMoveSpeed();
         }
 
+        private void OnDestroy()
+        {
+            stateMachine.Stop();
+        }
+
         #region ×´Ì¬»ú¹ÜÀí
         private PlayerState currentState;
 

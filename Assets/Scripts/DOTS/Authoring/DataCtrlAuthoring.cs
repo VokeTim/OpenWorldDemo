@@ -19,7 +19,8 @@ namespace OpenWorld.DOTS.Authoring
                     xAxisInvert = false,
                     yAxisInvert = false,
                     cameraMoveInput = new Unity.Mathematics.float2(0, 0),
-                    mouseSensitivity = 1
+                    mouseSensitivity = 1,
+                    isOpenMainMenu = false
                 };
                 AddComponent(entity, DataCtrl);
             }

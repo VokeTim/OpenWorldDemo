@@ -1,17 +1,10 @@
 using OpenWorld.System;
-using OpenWorld.System.UI;
+using OpenWorld.UI;
 using System;
 using UnityEngine;
 
 namespace OpenWorld
 {
-    // 是否展示窗口
-    public enum IsDisplayWindow
-    {
-        None,
-        Block
-    }
-
     public class GameManager : SingleMono<GameManager>
     {
         private Action updateAction;
@@ -21,21 +14,24 @@ namespace OpenWorld
         [HideInInspector]
         public SystemControl systemControl;
 
+        [SerializeField]
+        private GameObject menuCtrl;
+
         [HideInInspector]
-        public UISystem UISystem;     
+        public MenuCtrl menuCtrlComponent;
 
         public float PlayerVelocity; 
 
         public bool IsShowMenu = false;
 
-        public IsDisplayWindow DisplayWindow { get; private set; } 
 
         private void Awake()
         {
             Init();
             systemControl = new SystemControl();
             systemControl.InitInputSystem();
-            DisplayWindow = IsDisplayWindow.None;
+            menuCtrlComponent=menuCtrl.GetComponent<MenuCtrl>();
+            menuCtrlComponent.CloseMainMenuDisplay();
         }
 
         private void OnEnable()
@@ -45,6 +41,7 @@ namespace OpenWorld
 
         private void Start()
         {
+            //TODO: 添加可控接口控制，比如在选中某个输入框或者打开聊天框的时候能够开启输入法
             // 防止非输入状态下触发输入法 
             Input.imeCompositionMode = IMECompositionMode.Auto;
         }

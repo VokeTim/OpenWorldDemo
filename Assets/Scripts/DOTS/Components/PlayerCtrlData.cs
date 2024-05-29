@@ -22,5 +22,7 @@ namespace OpenWorld.DOTS.Commponent
 
         //  Û±Í¡È√Ù∂»
         public double mouseSensitivity;
+
+        public bool isOpenMainMenu;
     }
 }
