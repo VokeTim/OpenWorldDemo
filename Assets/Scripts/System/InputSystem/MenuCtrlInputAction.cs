@@ -1,5 +1,6 @@
 using OpenWorld.DOTS.Commponent;
 using OpenWorld.DOTS.Utils;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace OpenWorld.System.InputSystem
@@ -53,8 +54,7 @@ namespace OpenWorld.System.InputSystem
         /// </summary>
         private void closeMenuOpenState() 
         {
-            // 关闭主菜单界面
-            GameManager.Instance.menuCtrlComponent.CloseMainMenuDisplay();
+            GameManager.Instance.menuCtrlComponent.CloseMainMenuAction?.Invoke();
             // 修改DOTS中的数据
             SwitchDotsCtrlData(false);
         }
@@ -64,8 +64,7 @@ namespace OpenWorld.System.InputSystem
         /// </summary>
         private void openMenuOpenState() 
         {
-            // 显示菜单主界面
-            GameManager.Instance.menuCtrlComponent.OpenMainMenuDisplay();
+            GameManager.Instance.menuCtrlComponent.OpenMainMenuAction?.Invoke();
             // 修改DOTS中的数据
             SwitchDotsCtrlData(true);
         }
@@ -73,7 +72,7 @@ namespace OpenWorld.System.InputSystem
         /// <summary>
         /// 切换DOTS中的菜单控制数据
         /// </summary>
-        /// <param name="switchFlag"></param>
+        /// <param name="switchFlag">切换数据</param>
         private void SwitchDotsCtrlData(bool switchFlag) 
         {
             // 修改DOTS中的数据
