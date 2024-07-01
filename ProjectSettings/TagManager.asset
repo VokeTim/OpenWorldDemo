@@ -7,11 +7,12 @@ TagManager:
   - CinemachineCamera
   - UICanvas
   - MainMenu
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ground
   - Water
   - UI
   - 

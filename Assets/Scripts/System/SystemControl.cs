@@ -14,7 +14,7 @@ namespace OpenWorld.System
         /// <summary>
         /// 初始化InputSystem的所有InputAction
         /// </summary>
-        public void InitInputSystem()
+        public void InitControlSystem()
         {
             actions = new InputActionMap();
             // 获取当前程序集

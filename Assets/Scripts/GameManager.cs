@@ -29,7 +29,7 @@ namespace OpenWorld
         {
             Init();
             systemControl = new SystemControl();
-            systemControl.InitInputSystem();
+            systemControl.InitControlSystem();
             menuCtrlComponent=menuCtrl.GetComponent<MenuCtrl>();
             menuCtrlComponent.CloseMainMenuDisplay();
         }
@@ -65,6 +65,8 @@ namespace OpenWorld
         {
             systemControl.actions.Disable();
         }
+
+        
 
         public void AddUpdateListener(Action action) 
         {

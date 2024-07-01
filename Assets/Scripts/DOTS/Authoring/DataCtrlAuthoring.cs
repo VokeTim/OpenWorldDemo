@@ -20,7 +20,8 @@ namespace OpenWorld.DOTS.Authoring
                     yAxisInvert = false,
                     cameraMoveInput = new Unity.Mathematics.float2(0, 0),
                     mouseSensitivity = 1,
-                    isOpenMainMenu = false
+                    isOpenMainMenu = false,
+                    needJump = false
                 };
                 AddComponent(entity, DataCtrl);
             }

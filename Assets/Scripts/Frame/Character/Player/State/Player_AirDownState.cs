@@ -4,27 +4,26 @@ using UnityEngine;
 
 namespace OpenWorld.Framework.Character.Player
 {
-    public class Player_IdleState : PlayerStateBase
+    public class Player_AirDownState : PlayerStateBase
     {
         public override void Enter()
         {
-            // 播放待机动画
-            player.PlayAnimation("Idle");
+            player.PlayAnimation("AirDown");
         }
 
         public override void Update()
         {
-            if (player.PlayerMoveInputListener()) 
+            if (player.CharacterController.isGrounded)
             {
-                player.ChangeState(PlayerState.Move);
+                // 已经接触到地面
+                player.ChangeState(PlayerState.Idle);
+                UpdateWithECS();
             }
-            //检测玩家移动
-            //TODO: 射线检测距离小于0.2时停止重力计算
-            player.CharacterController.Move(new Vector3(0, player.gravity * Time.deltaTime, 0));
-            UpdateWithECS();
-            if (player.needJump) 
+            else 
             {
-                player.ChangeState(PlayerState.Jump);
+                // 没有接触到地面继续下落
+                Vector3 offset = new Vector3(0, player.gravity * Time.deltaTime, 0);
+                player.CharacterController.Move(offset);
             }
         }
 
@@ -34,7 +33,9 @@ namespace OpenWorld.Framework.Character.Player
             foreach (var entity in entityArray)
             {
                 var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
-                player.needJump = playerData.needJump;
+                // 跳跃结束，修改需要跳跃的标识
+                playerData.needJump = false;
+                DOTSUtils.entityManager.SetComponentData(entity, playerData);
             }
             DOTSUtils.DisposeEntitiesArray(entityArray);
         }

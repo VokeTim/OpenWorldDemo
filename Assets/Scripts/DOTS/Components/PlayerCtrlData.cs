@@ -23,6 +23,9 @@ namespace OpenWorld.DOTS.Commponent
         // 鼠标灵敏度
         public double mouseSensitivity;
 
+        // 是否开启主菜单
         public bool isOpenMainMenu;
+
+        public bool needJump;
     }
 }

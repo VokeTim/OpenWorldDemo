@@ -8,15 +8,26 @@ namespace OpenWorld.Framework.Character
 {
     public class PlayerController : CharacterBase
     {
-        public float velocity;
-
+        [SerializeField]
         private float moveSpeed;
+
+        [SerializeField]
+        private float jumpSpeed;
+
+        [SerializeField]
+        private float jumpMaxHeight;
+
+        public bool needJump;
+
+        public float JumpSpeed { get { return jumpSpeed; } }
+
+        public float JumpMaxHight { get { return jumpMaxHeight; } }
 
         private float mouseSensitivity;
 
         private void Awake()
         {
-            moveSpeed = 5.0f;
+            //moveSpeed = 5.0f;
             mouseSensitivity = 1;
         }
 
@@ -32,12 +43,13 @@ namespace OpenWorld.Framework.Character
         private void Update()
         {
             //UpdatePositionAndStatusByECS();
+            //UpdateIsGroundInByECS();
         }
 
         public override void Init()
         {
             base.Init();
-            SetPlayerMoveSpeed();
+            SetPlayerCtrlDatawithDOTS();
         }
 
         private void OnDestroy()
@@ -55,6 +67,8 @@ namespace OpenWorld.Framework.Character
             {
                 case PlayerState.Idle: stateMachine.ChangeState<Player_IdleState>(reCurrentState); break;
                 case PlayerState.Move: stateMachine.ChangeState<Player_MoveState>(reCurrentState); break;
+                case PlayerState.Jump:stateMachine.ChangeState<Player_JumpState>(reCurrentState);break;
+                case PlayerState.AirDown:stateMachine.ChangeState<Player_AirDownState>(reCurrentState);break;
                 default: break;
             }
         }
@@ -64,14 +78,14 @@ namespace OpenWorld.Framework.Character
         /// <summary>
         /// 查询PlayerData的数据并赋值
         /// </summary>
-        public void SetPlayerMoveSpeed() 
+        public void SetPlayerCtrlDatawithDOTS() 
         {
             var entityArray = DOTSUtils.QueryEntitiesArrInGameObject<PlayerCtrlData>();
             foreach (var entity in entityArray)
             {
                 var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
                 playerData.moveSpeed = moveSpeed;
-                playerData.mouseSensitivity = mouseSensitivity;
+                playerData.mouseSensitivity = mouseSensitivity;  
                 DOTSUtils.entityManager.SetComponentData(entity, playerData);
             }
             DOTSUtils.DisposeEntitiesArray(entityArray);
@@ -82,15 +96,26 @@ namespace OpenWorld.Framework.Character
         /// </summary>
         public void UpdatePositionAndStatusByECS() 
         {
-            Transform playertransform = GetComponent<Transform>();
+            //Transform playertransform = GetComponent<Transform>();
             var entityArray = DOTSUtils.QueryEntitiesArrInGameObject<PlayerCtrlData>();
             foreach (var entity in entityArray)
             {
                 var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
                 Vector3 moveDir = new Vector3(playerData.moveDir.x, 0, playerData.moveDir.z);
-                playertransform.position += moveDir;
+                //playertransform.position += moveDir;
+                characterController.Move(moveDir);
                 model.Animator.SetFloat("MoveX", playerData.moveDir.x);
                 model.Animator.SetFloat("MoveY", playerData.moveDir.z);
+            }
+            DOTSUtils.DisposeEntitiesArray(entityArray);
+        }
+
+        public void UpdateIsGroundInByECS() 
+        {
+            var entityArray = DOTSUtils.QueryEntitiesArrInGameObject<PlayerCtrlData>();
+            foreach (var entity in entityArray)
+            {
+                var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
             }
             DOTSUtils.DisposeEntitiesArray(entityArray);
         }

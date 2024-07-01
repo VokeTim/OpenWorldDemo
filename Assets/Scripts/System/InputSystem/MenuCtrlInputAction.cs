@@ -1,6 +1,5 @@
 using OpenWorld.DOTS.Commponent;
 using OpenWorld.DOTS.Utils;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace OpenWorld.System.InputSystem
