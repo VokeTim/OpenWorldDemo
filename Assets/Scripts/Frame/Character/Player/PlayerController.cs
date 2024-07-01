@@ -19,6 +19,8 @@ namespace OpenWorld.Framework.Character
 
         public bool needJump;
 
+        public Vector3 jumpMoveDir = Vector3.zero;
+
         public float JumpSpeed { get { return jumpSpeed; } }
 
         public float JumpMaxHight { get { return jumpMaxHeight; } }

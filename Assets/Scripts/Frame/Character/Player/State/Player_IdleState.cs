@@ -14,14 +14,15 @@ namespace OpenWorld.Framework.Character.Player
 
         public override void Update()
         {
+            //检测玩家移动
             if (player.PlayerMoveInputListener()) 
             {
                 player.ChangeState(PlayerState.Move);
             }
-            //检测玩家移动
-            //TODO: 射线检测距离小于0.2时停止重力计算
+            
             player.CharacterController.Move(new Vector3(0, player.gravity * Time.deltaTime, 0));
             UpdateWithECS();
+            //TODO: 考虑由常态装换到下落状态判断（例如：角色移动到一个高低差较大的区域然后从高处落下）
             if (player.needJump) 
             {
                 player.ChangeState(PlayerState.Jump);

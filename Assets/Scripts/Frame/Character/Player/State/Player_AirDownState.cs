@@ -22,9 +22,14 @@ namespace OpenWorld.Framework.Character.Player
             else 
             {
                 // 没有接触到地面继续下落
-                Vector3 offset = new Vector3(0, player.gravity * Time.deltaTime, 0);
+                Vector3 offset = new Vector3(player.jumpMoveDir.x, player.gravity * Time.deltaTime, player.jumpMoveDir.z);
                 player.CharacterController.Move(offset);
             }
+        }
+
+        public override void Exit()
+        {
+            player.jumpMoveDir = Vector3.zero;
         }
 
         private void UpdateWithECS() 
