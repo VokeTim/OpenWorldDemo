@@ -1,5 +1,3 @@
-using OpenWorld.DOTS.Commponent;
-using OpenWorld.DOTS.Utils;
 using UnityEngine;
 
 namespace OpenWorld.Framework.Character.Player

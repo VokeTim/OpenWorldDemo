@@ -2,6 +2,7 @@ using OpenWorld.DOTS.Commponent;
 using OpenWorld.DOTS.Utils;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace OpenWorld.UI
 {
@@ -36,6 +37,8 @@ namespace OpenWorld.UI
             DOTSUtils.DisposeEntitiesArray(entityArray);
             OpenMainMenuAction += OpenMainMenuDisplay;
             CloseMainMenuAction += CloseMainMenuDisplay;
+            OpenMainMenuAction += InitCurrentPositionInScreen;
+            CloseMainMenuAction += InitCurrentPositionInScreen;
         }
 
         /// <summary>
@@ -43,6 +46,8 @@ namespace OpenWorld.UI
         /// </summary>
         public void CloseMainMenuDisplay()
         {
+            // 隐藏鼠标
+            Cursor.visible = false;
             // 关闭主菜单显示
             mainMenuComponent.SetActive(false);
             // 开启攻击输入
@@ -54,10 +59,18 @@ namespace OpenWorld.UI
         /// </summary>
         public void OpenMainMenuDisplay()
         {
+            Cursor.visible = true;
             // 开启主菜单显示
             mainMenuComponent.SetActive(true);
             // 关闭攻击输入
             GameManager.Instance.systemControl.actions.FindAction("Attack").Disable();
+        }
+
+        public void InitCurrentPositionInScreen() 
+        {
+            var mouseInitx = Screen.width / 2;
+            var mouseInity = Screen.height / 2;
+            Mouse.current.WarpCursorPosition(new Vector2(mouseInitx, mouseInity));
         }
     }
 }

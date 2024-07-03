@@ -1,5 +1,6 @@
 using OpenWorld.DOTS.Commponent;
 using OpenWorld.DOTS.Utils;
+using UnityEngine;
 
 namespace OpenWorld.Framework.Character.Player
 {
@@ -7,19 +8,17 @@ namespace OpenWorld.Framework.Character.Player
     {
         public override void Enter()
         {
-            //player.PlayAnimation("Move");
             player.PlayAnimation("MoveMotionTree");
         }
 
         public override void Update()
         {
-            if (!player.PlayerMoveInputListener()) 
+            UpdateWithECS();
+            if (!player.isMoving) 
             {
                 player.ChangeState(PlayerState.Idle);
             }
-            player.UpdatePositionAndStatusByECS();
-            //移动时跳跃
-            UpdateWithECS();
+            //移动时跳跃       
             if (player.needJump)
             {
                 player.ChangeState(PlayerState.Jump);
@@ -34,6 +33,15 @@ namespace OpenWorld.Framework.Character.Player
                 var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
                 player.jumpMoveDir = playerData.moveDir;
                 player.needJump = playerData.needJump;
+                Vector3 moveDir = new Vector3(playerData.moveDir.x, 0, playerData.moveDir.z);
+                if (moveDir.x != 0 || moveDir.z != 0)
+                {
+                    player.isMoving = true;
+                }
+                //playertransform.position += moveDir;
+                player.CharacterController.Move(moveDir);
+                player.Model.Animator.SetFloat("MoveX", playerData.moveDir.x);
+                player.Model.Animator.SetFloat("MoveY", playerData.moveDir.z);
             }
             DOTSUtils.DisposeEntitiesArray(entityArray);
         }

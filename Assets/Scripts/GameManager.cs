@@ -28,10 +28,6 @@ namespace OpenWorld
         private void Awake()
         {
             Init();
-            systemControl = new SystemControl();
-            systemControl.InitControlSystem();
-            menuCtrlComponent=menuCtrl.GetComponent<MenuCtrl>();
-            menuCtrlComponent.CloseMainMenuDisplay();
         }
 
         private void OnEnable()
@@ -39,10 +35,17 @@ namespace OpenWorld
             systemControl.actions.Enable();
         }
 
-        private void Start()
+        protected override void Init()
         {
-            //TODO: 添加可控接口控制，比如在选中某个输入框或者打开聊天框的时候能够开启输入法
-            // 防止非输入状态下触发输入法 
+            base.Init();
+            systemControl = new SystemControl();
+            systemControl.InitControlSystem();
+            menuCtrlComponent = menuCtrl.GetComponent<MenuCtrl>();
+            menuCtrlComponent.CloseMainMenuDisplay();
+            // IMECompositionMode:
+            // Auto 当有一个输入框被选中时才会启动输入法
+            // On 无论何时都会启用输入法
+            // Off 无论何时都不会启用输入法
             Input.imeCompositionMode = IMECompositionMode.Auto;
         }
 
@@ -65,8 +68,6 @@ namespace OpenWorld
         {
             systemControl.actions.Disable();
         }
-
-        
 
         public void AddUpdateListener(Action action) 
         {

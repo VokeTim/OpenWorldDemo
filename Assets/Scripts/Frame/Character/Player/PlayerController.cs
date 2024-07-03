@@ -17,9 +17,14 @@ namespace OpenWorld.Framework.Character
         [SerializeField]
         private float jumpMaxHeight;
 
+        [HideInInspector]
         public bool needJump;
 
+        [HideInInspector]
         public Vector3 jumpMoveDir = Vector3.zero;
+
+        [HideInInspector]
+        public bool isMoving = false;
 
         public float JumpSpeed { get { return jumpSpeed; } }
 
@@ -44,8 +49,6 @@ namespace OpenWorld.Framework.Character
 
         private void Update()
         {
-            //UpdatePositionAndStatusByECS();
-            //UpdateIsGroundInByECS();
         }
 
         public override void Init()
@@ -91,56 +94,6 @@ namespace OpenWorld.Framework.Character
                 DOTSUtils.entityManager.SetComponentData(entity, playerData);
             }
             DOTSUtils.DisposeEntitiesArray(entityArray);
-        }
-
-        /// <summary>
-        /// 根据ECS中的数据更新移动和动画
-        /// </summary>
-        public void UpdatePositionAndStatusByECS() 
-        {
-            //Transform playertransform = GetComponent<Transform>();
-            var entityArray = DOTSUtils.QueryEntitiesArrInGameObject<PlayerCtrlData>();
-            foreach (var entity in entityArray)
-            {
-                var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
-                Vector3 moveDir = new Vector3(playerData.moveDir.x, 0, playerData.moveDir.z);
-                //playertransform.position += moveDir;
-                characterController.Move(moveDir);
-                model.Animator.SetFloat("MoveX", playerData.moveDir.x);
-                model.Animator.SetFloat("MoveY", playerData.moveDir.z);
-            }
-            DOTSUtils.DisposeEntitiesArray(entityArray);
-        }
-
-        public void UpdateIsGroundInByECS() 
-        {
-            var entityArray = DOTSUtils.QueryEntitiesArrInGameObject<PlayerCtrlData>();
-            foreach (var entity in entityArray)
-            {
-                var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
-            }
-            DOTSUtils.DisposeEntitiesArray(entityArray);
-        }
-
-        /// <summary>
-        /// 监听玩家控制角色的移动输入
-        /// </summary>
-        /// <returns></returns>
-        public bool PlayerMoveInputListener() 
-        {
-            bool playerIsMoving = false;
-            var entityArray = DOTSUtils.QueryEntitiesArrInGameObject<PlayerCtrlData>();
-            foreach (var entity in entityArray)
-            {
-                var playerData = DOTSUtils.entityManager.GetComponentData<PlayerCtrlData>(entity);
-                Vector3 moveDir = new Vector3(playerData.moveDir.x, 0, playerData.moveDir.z);
-                if (moveDir.x != 0 || moveDir.z != 0) 
-                {
-                    playerIsMoving = true;
-                }
-            }
-            DOTSUtils.DisposeEntitiesArray(entityArray);
-            return playerIsMoving;
         }
         #endregion
     }

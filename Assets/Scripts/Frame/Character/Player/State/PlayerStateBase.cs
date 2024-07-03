@@ -22,7 +22,6 @@ namespace OpenWorld.Framework.Character.Player
                 normalizedTime = nextInfo.normalizedTime;
                 return true;
             }
-
             AnimatorStateInfo currentInfo = player.Model.Animator.GetCurrentAnimatorStateInfo(0);
             normalizedTime = currentInfo.normalizedTime;
             return currentInfo.IsName(stateName);
